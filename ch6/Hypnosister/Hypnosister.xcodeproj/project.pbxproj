@@ -19,6 +19,9 @@
 		4AD31C181839346C0075E2AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31C001839346C0075E2AF /* UIKit.framework */; };
 		4AD31C201839346C0075E2AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31C1E1839346C0075E2AF /* InfoPlist.strings */; };
 		4AD31C221839346C0075E2AF /* HypnosisterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31C211839346C0075E2AF /* HypnosisterTests.m */; };
+		4AD31C2D183935020075E2AF /* HypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31C2C183935020075E2AF /* HypnosisView.m */; };
+		4AD31C2F1839649A0075E2AF /* bnr-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31C2E1839649A0075E2AF /* bnr-logo.png */; };
+		4AD31C32183964C60075E2AF /* BNRLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31C31183964C60075E2AF /* BNRLogoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,11 @@
 		4AD31C1D1839346C0075E2AF /* HypnosisterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HypnosisterTests-Info.plist"; sourceTree = "<group>"; };
 		4AD31C1F1839346C0075E2AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AD31C211839346C0075E2AF /* HypnosisterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HypnosisterTests.m; sourceTree = "<group>"; };
+		4AD31C2B183935020075E2AF /* HypnosisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisView.h; sourceTree = "<group>"; };
+		4AD31C2C183935020075E2AF /* HypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisView.m; sourceTree = "<group>"; };
+		4AD31C2E1839649A0075E2AF /* bnr-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bnr-logo.png"; path = "../../../../../Documents/bnr-logo.png"; sourceTree = "<group>"; };
+		4AD31C30183964C60075E2AF /* BNRLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRLogoView.h; sourceTree = "<group>"; };
+		4AD31C31183964C60075E2AF /* BNRLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRLogoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +117,11 @@
 			children = (
 				4AD31C0B1839346C0075E2AF /* HypnosisterAppDelegate.h */,
 				4AD31C0C1839346C0075E2AF /* HypnosisterAppDelegate.m */,
+				4AD31C2B183935020075E2AF /* HypnosisView.h */,
+				4AD31C2C183935020075E2AF /* HypnosisView.m */,
 				4AD31C0E1839346C0075E2AF /* Images.xcassets */,
+				4AD31C30183964C60075E2AF /* BNRLogoView.h */,
+				4AD31C31183964C60075E2AF /* BNRLogoView.m */,
 				4AD31C031839346C0075E2AF /* Supporting Files */,
 			);
 			path = Hypnosister;
@@ -118,6 +130,7 @@
 		4AD31C031839346C0075E2AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AD31C2E1839649A0075E2AF /* bnr-logo.png */,
 				4AD31C041839346C0075E2AF /* Hypnosister-Info.plist */,
 				4AD31C051839346C0075E2AF /* InfoPlist.strings */,
 				4AD31C081839346C0075E2AF /* main.m */,
@@ -220,6 +233,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD31C2F1839649A0075E2AF /* bnr-logo.png in Resources */,
 				4AD31C071839346C0075E2AF /* InfoPlist.strings in Resources */,
 				4AD31C0F1839346C0075E2AF /* Images.xcassets in Resources */,
 			);
@@ -242,6 +256,8 @@
 			files = (
 				4AD31C091839346C0075E2AF /* main.m in Sources */,
 				4AD31C0D1839346C0075E2AF /* HypnosisterAppDelegate.m in Sources */,
+				4AD31C32183964C60075E2AF /* BNRLogoView.m in Sources */,
+				4AD31C2D183935020075E2AF /* HypnosisView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,49 @@
 //
 
 #import "HypnosisterAppDelegate.h"
+#import "BNRLogoView.h"
 
 @implementation HypnosisterAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    CGRect windowBounds = [[self window] bounds];
+    
+    // To get this to work in iOS 7, you have to add this line to the info.plist (case sensitive):
+    // View controller-based status bar appearance
+    // Type: Boolean
+    // Value: NO
+    // [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:windowBounds];
+    [[self window] addSubview:scrollView];
+    
+    CGRect hypnosisViewRect = CGRectMake(0, 0, windowBounds.size.width, windowBounds.size.height);
+    _hypnosisView = [[HypnosisView alloc] initWithFrame:hypnosisViewRect];
+    
+    // Ch. 5 Gold Challenge - Draw a clipped circle logo image
+    CGRect logoViewRect = CGRectMake(100, 100, 100, 100);
+    BNRLogoView *logoView = [[BNRLogoView alloc] initWithFrame:logoViewRect];
+    [_hypnosisView addSubview:logoView];
+    
+    [scrollView addSubview:_hypnosisView];
+    // Can't forget to set the scroll view content size!
+    [scrollView setContentSize:windowBounds.size];
+    // Scroll view zoom settings
+    scrollView.minimumZoomScale = 1.0;
+    scrollView.maximumZoomScale = 5.0;
+    [scrollView setDelegate:self];
+    
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return _hypnosisView;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
