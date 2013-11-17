@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <scenes>
+        <!--Whereami View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="WhereamiViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6BD-5Q-j9d"/>
+                        <viewControllerLayoutGuide type="bottom" id="zVL-7N-m99"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DBb-Ln-kL2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="ubB-ZB-LMu"/>
+                                </connections>
+                            </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bwC-zC-Pjr">
+                                <rect key="frame" x="150" y="58" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Location Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aiD-60-ouU">
+                                <rect key="frame" x="70" y="20" width="180" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4Em-h8-K2b"/>
+                                    <constraint firstAttribute="width" constant="180" id="e2i-FR-In0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="u6A-Wh-pgc"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DBb-Ln-kL2" secondAttribute="trailing" id="2TP-v3-hyl"/>
+                            <constraint firstItem="bwC-zC-Pjr" firstAttribute="top" secondItem="aiD-60-ouU" secondAttribute="bottom" constant="8" id="6lu-Mw-hhe"/>
+                            <constraint firstItem="DBb-Ln-kL2" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="E7P-Ns-ZKn"/>
+                            <constraint firstAttribute="centerX" secondItem="bwC-zC-Pjr" secondAttribute="centerX" id="QRB-lz-Tbt"/>
+                            <constraint firstItem="zVL-7N-m99" firstAttribute="top" secondItem="DBb-Ln-kL2" secondAttribute="bottom" id="aOw-L3-Pgt"/>
+                            <constraint firstItem="aiD-60-ouU" firstAttribute="top" secondItem="6BD-5Q-j9d" secondAttribute="bottom" id="nCw-HO-uzG"/>
+                            <constraint firstAttribute="centerX" secondItem="aiD-60-ouU" secondAttribute="centerX" id="oc4-X5-bB6"/>
+                            <constraint firstItem="DBb-Ln-kL2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="vIc-lu-Qno"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="bwC-zC-Pjr" id="zK3-cx-tK5"/>
+                        <outlet property="locationTitleField" destination="aiD-60-ouU" id="4gn-OR-6mB"/>
+                        <outlet property="worldView" destination="DBb-Ln-kL2" id="uhz-0Z-QvN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
