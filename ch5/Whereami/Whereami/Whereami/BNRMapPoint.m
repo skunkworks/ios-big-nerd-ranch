@@ -21,7 +21,12 @@
     self = [super init];
     if (self) {
         self.coordinate = coordinate;
-        self.title = title;
+        
+        // Ch. 5 Gold Challenge
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        df.dateStyle = NSDateFormatterShortStyle;
+        NSString *dateString = [df stringFromDate:[NSDate date]];
+        self.title = [NSString stringWithFormat:@"%@ (%@)", title, dateString];
     }
     return self;
 }

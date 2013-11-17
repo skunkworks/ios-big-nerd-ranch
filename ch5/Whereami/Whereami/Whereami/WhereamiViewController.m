@@ -50,19 +50,14 @@
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    // Ch 4. Bronze challenge
-    locationManager.distanceFilter = 50;
-    
-    // Ch. 4 Silver challenge
-    if ([CLLocationManager headingAvailable])
-        [locationManager startUpdatingHeading];
 }
 
 - (void)setupMapView
 {
     worldView.showsUserLocation = true;
     worldView.delegate = self;
+    // Ch. 5 Bronze Challenge
+    worldView.mapType = MKMapTypeSatellite;
 }
 
 - (void)setupTextField
@@ -75,8 +70,13 @@
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations
 {
-    if ([locations count])
-        [self foundLocation:[locations lastObject]];
+    if ([locations count]) {
+        // Check that location update is fresher than 3 minutes
+        CLLocation *lastUpdate = [locations lastObject];
+        int secondsSinceLastUpdate = abs([[lastUpdate timestamp] timeIntervalSinceNow]);
+        if (secondsSinceLastUpdate < 180)
+            [self foundLocation:lastUpdate];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -143,6 +143,22 @@
     // Re-enable UI
     [activityIndicator stopAnimating];
     locationTitleField.enabled = YES;
+}
+
+// Ch. 5 Silver Challenge - add segmented control to toggle map type
+- (IBAction)mapTypeChanged:(UISegmentedControl *)sender
+{
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            worldView.mapType = MKMapTypeStandard;
+            break;
+        case 1:
+            worldView.mapType = MKMapTypeSatellite;
+            break;
+        case 2:
+            worldView.mapType = MKMapTypeHybrid;
+            break;
+    }
 }
 
 @end
