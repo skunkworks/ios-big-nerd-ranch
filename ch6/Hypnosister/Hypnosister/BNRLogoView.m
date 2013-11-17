@@ -21,7 +21,6 @@
     return self;
 }
 
-
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -38,6 +37,17 @@
     [[UIColor blackColor] setStroke];
     CGContextSetLineWidth(ctx, 1);
     
+    // Creating gradient
+    CGGradientRef gradient;
+    CGColorSpaceRef colorspace;
+    CGFloat colors [] = {
+        0.0, 0.0, 1.0, 0.3,
+        1.0, 1.0, 1.0, 0.3
+    };
+    colorspace = CGColorSpaceCreateDeviceRGB();
+    gradient = CGGradientCreateWithColorComponents(colorspace, colors, NULL, 2);
+    CGColorSpaceRelease(colorspace);
+    
     // Set up the shadow
     CGSize shadowOffset = CGSizeMake(3, 3);
     CGColorRef shadowColor = [[UIColor darkGrayColor] CGColor];
@@ -52,6 +62,7 @@
     CGContextAddPath(ctx, path);
     CGContextClip(ctx);
     [logoImage drawInRect:rect];
+    CGContextDrawLinearGradient(ctx, gradient, CGPointMake(0, 0), CGPointMake(rect.size.width, rect.size.height), kCGGradientDrawsBeforeStartLocation);
     CGContextRestoreGState(ctx);
 }
 
