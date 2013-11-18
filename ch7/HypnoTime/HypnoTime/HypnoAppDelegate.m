@@ -7,13 +7,34 @@
 //
 
 #import "HypnoAppDelegate.h"
+#import "HypnosisViewController.h"
+#import "TimeViewController.h"
+#import "MapViewController.h"
 
 @implementation HypnoAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    HypnosisViewController *hypnosisVC = [[HypnosisViewController alloc] init];
+    
+    TimeViewController *timeVC = [[TimeViewController alloc] init];
+    
+    // Ch. 7 Bronze Challenge - create a third VC that has an MKMapView
+    MapViewController *mapVC = [[MapViewController alloc] init];
+    
+    UITabBarController *rootVC = [[UITabBarController alloc] init];
+    [rootVC addChildViewController:hypnosisVC];
+    [rootVC addChildViewController:timeVC];
+    // Ch. 7 Bronze Challenge
+    [rootVC addChildViewController:mapVC];
+    
+    // Setting a view controller as the rootViewController of a window adds
+    // that view controller’s view as a subview of the window. It also
+    // automatically resizes the view to be the same size as the window.
+    self.window.rootViewController = rootVC;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
