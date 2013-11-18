@@ -51,4 +51,9 @@
     return [[[BNRItemStore sharedStore] allItems] count];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 @end
