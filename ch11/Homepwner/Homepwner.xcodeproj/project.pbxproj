@@ -23,6 +23,7 @@
 		4AD31D0A1839E0B10075E2AF /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31D091839E0B10075E2AF /* BNRItem.m */; };
 		4AD31D0D1839E18A0075E2AF /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31D0C1839E18A0075E2AF /* BNRItemStore.m */; };
 		4AD31D0F183A8CBC0075E2AF /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31D0E183A8CBC0075E2AF /* Storyboard.storyboard */; };
+		4AD31D53183AB1460075E2AF /* BNRItemDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31D52183AB1460075E2AF /* BNRItemDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		4AD31D0B1839E18A0075E2AF /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
 		4AD31D0C1839E18A0075E2AF /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
 		4AD31D0E183A8CBC0075E2AF /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		4AD31D51183AB1460075E2AF /* BNRItemDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemDetailViewController.h; sourceTree = "<group>"; };
+		4AD31D52183AB1460075E2AF /* BNRItemDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,10 +121,10 @@
 		4AD31CDC1839DE8F0075E2AF /* Homepwner */ = {
 			isa = PBXGroup;
 			children = (
-				4AD31CE51839DE8F0075E2AF /* HomepwnerAppDelegate.h */,
-				4AD31CE61839DE8F0075E2AF /* HomepwnerAppDelegate.m */,
 				4AD31D051839DEA30075E2AF /* ItemsViewController.h */,
 				4AD31D061839DEA30075E2AF /* ItemsViewController.m */,
+				4AD31D51183AB1460075E2AF /* BNRItemDetailViewController.h */,
+				4AD31D52183AB1460075E2AF /* BNRItemDetailViewController.m */,
 				4AD31D081839E0B10075E2AF /* BNRItem.h */,
 				4AD31D091839E0B10075E2AF /* BNRItem.m */,
 				4AD31D0B1839E18A0075E2AF /* BNRItemStore.h */,
@@ -136,6 +139,8 @@
 		4AD31CDD1839DE8F0075E2AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AD31CE51839DE8F0075E2AF /* HomepwnerAppDelegate.h */,
+				4AD31CE61839DE8F0075E2AF /* HomepwnerAppDelegate.m */,
 				4AD31CDE1839DE8F0075E2AF /* Homepwner-Info.plist */,
 				4AD31CDF1839DE8F0075E2AF /* InfoPlist.strings */,
 				4AD31CE21839DE8F0075E2AF /* main.m */,
@@ -262,6 +267,7 @@
 				4AD31D0D1839E18A0075E2AF /* BNRItemStore.m in Sources */,
 				4AD31D071839DEA30075E2AF /* ItemsViewController.m in Sources */,
 				4AD31D0A1839E0B10075E2AF /* BNRItem.m in Sources */,
+				4AD31D53183AB1460075E2AF /* BNRItemDetailViewController.m in Sources */,
 				4AD31CE71839DE8F0075E2AF /* HomepwnerAppDelegate.m in Sources */,
 				4AD31CE31839DE8F0075E2AF /* main.m in Sources */,
 			);

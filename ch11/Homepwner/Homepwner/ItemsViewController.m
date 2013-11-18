@@ -8,6 +8,7 @@
 
 #import "ItemsViewController.h"
 #import "BNRItemStore.h"
+#import "BNRItemDetailViewController.h"
 
 @implementation ItemsViewController
 
@@ -80,4 +81,21 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
                           atScrollPosition:UITableViewScrollPositionBottom
                                   animated:YES];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue
+                 sender:(id)sender
+{
+    UITableViewCell *cell = (UITableViewCell *)sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    if ([segue.identifier isEqualToString:@"Show detail view of BNRItem"]) {
+        BNRItemDetailViewController *vc = (BNRItemDetailViewController *)segue.destinationViewController;
+        if ([vc respondsToSelector:@selector(setItem:)]) {
+            NSArray *items = [[BNRItemStore sharedStore] allItems];
+            BNRItem *item = items[indexPath.row];
+            [vc performSelector:@selector(setItem:) withObject:item];
+        }
+    }
+}
+
 @end
