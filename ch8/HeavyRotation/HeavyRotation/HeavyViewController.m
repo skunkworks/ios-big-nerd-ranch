@@ -14,25 +14,39 @@
 
 @implementation HeavyViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+// Ch. 8 Bronze Challenge - get proximity notifications
+- (void)viewWillAppear:(BOOL)animated
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    [super viewWillAppear:animated];
+    UIDevice *device = [UIDevice currentDevice];
+    device.proximityMonitoringEnabled = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(proximityChanged:)
+                                                 name:UIDeviceProximityStateDidChangeNotification
+                                               object:device];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)proximityChanged:(NSNotification *)sender
+{
+    UIDevice *device = sender.object;
+    if (device.proximityState) {
+        NSLog(@"Close to user!");
+    } else {
+        NSLog(@"Far from user...");
     }
-    return self;
 }
 
-- (void)viewDidLoad
+// shouldAutorotate... was deprecated in iOS 6; instead, use this:
+- (NSUInteger)supportedInterfaceOrientations
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 
 @end

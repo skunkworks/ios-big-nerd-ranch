@@ -7,16 +7,40 @@
 //
 
 #import "RotationAppDelegate.h"
+#import "HeavyViewController.h"
 
 @implementation RotationAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+
+    // Kick off the orientation notifications
+    UIDevice *device = [UIDevice currentDevice];
+    [device beginGeneratingDeviceOrientationNotifications];
+    
+    // Register for notifications
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
+    [nc addObserver:self
+           selector:@selector(orientationChanged:)
+               name:UIDeviceOrientationDidChangeNotification
+             object:device];
+    
+    HeavyViewController *hvc = [[HeavyViewController alloc] init];
+    // Interesting note: have to set the rootViewController property to have the window notify the
+    // root VC that the device has rotated.
+    self.window.rootViewController = hvc;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+    UIDevice *device = (UIDevice *)notification.object;
+    NSLog(@"Orientation: %d", (int)device.orientation);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

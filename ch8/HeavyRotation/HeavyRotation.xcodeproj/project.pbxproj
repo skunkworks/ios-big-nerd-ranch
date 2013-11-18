@@ -19,6 +19,9 @@
 		4AD31CB01839BA1F0075E2AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31C981839BA1F0075E2AF /* UIKit.framework */; };
 		4AD31CB81839BA1F0075E2AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31CB61839BA1F0075E2AF /* InfoPlist.strings */; };
 		4AD31CBA1839BA1F0075E2AF /* HeavyRotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31CB91839BA1F0075E2AF /* HeavyRotationTests.m */; };
+		4AD31CC61839BD0E0075E2AF /* HeavyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31CC41839BD0E0075E2AF /* HeavyViewController.m */; };
+		4AD31CC71839BD0E0075E2AF /* HeavyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31CC51839BD0E0075E2AF /* HeavyViewController.xib */; };
+		4AD31CC91839BEB40075E2AF /* joeeye.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31CC81839BEB40075E2AF /* joeeye.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,10 @@
 		4AD31CB51839BA1F0075E2AF /* HeavyRotationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HeavyRotationTests-Info.plist"; sourceTree = "<group>"; };
 		4AD31CB71839BA1F0075E2AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AD31CB91839BA1F0075E2AF /* HeavyRotationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeavyRotationTests.m; sourceTree = "<group>"; };
+		4AD31CC31839BD0E0075E2AF /* HeavyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeavyViewController.h; sourceTree = "<group>"; };
+		4AD31CC41839BD0E0075E2AF /* HeavyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeavyViewController.m; sourceTree = "<group>"; };
+		4AD31CC51839BD0E0075E2AF /* HeavyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeavyViewController.xib; sourceTree = "<group>"; };
+		4AD31CC81839BEB40075E2AF /* joeeye.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = joeeye.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +116,9 @@
 			children = (
 				4AD31CA31839BA1F0075E2AF /* RotationAppDelegate.h */,
 				4AD31CA41839BA1F0075E2AF /* RotationAppDelegate.m */,
+				4AD31CC31839BD0E0075E2AF /* HeavyViewController.h */,
+				4AD31CC41839BD0E0075E2AF /* HeavyViewController.m */,
+				4AD31CC51839BD0E0075E2AF /* HeavyViewController.xib */,
 				4AD31CA61839BA1F0075E2AF /* Images.xcassets */,
 				4AD31C9B1839BA1F0075E2AF /* Supporting Files */,
 			);
@@ -118,6 +128,7 @@
 		4AD31C9B1839BA1F0075E2AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AD31CC81839BEB40075E2AF /* joeeye.jpg */,
 				4AD31C9C1839BA1F0075E2AF /* HeavyRotation-Info.plist */,
 				4AD31C9D1839BA1F0075E2AF /* InfoPlist.strings */,
 				4AD31CA01839BA1F0075E2AF /* main.m */,
@@ -221,6 +232,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD31C9F1839BA1F0075E2AF /* InfoPlist.strings in Resources */,
+				4AD31CC71839BD0E0075E2AF /* HeavyViewController.xib in Resources */,
+				4AD31CC91839BEB40075E2AF /* joeeye.jpg in Resources */,
 				4AD31CA71839BA1F0075E2AF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +253,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AD31CC61839BD0E0075E2AF /* HeavyViewController.m in Sources */,
 				4AD31CA51839BA1F0075E2AF /* RotationAppDelegate.m in Sources */,
 				4AD31CA11839BA1F0075E2AF /* main.m in Sources */,
 			);
