@@ -43,4 +43,17 @@
     return item;
 }
 
+- (void)deleteItem:(BNRItem *)item
+{
+    [items removeObjectIdenticalTo:item];
+}
+
+- (void)moveItemAtIndex:(NSUInteger)sourceIndex
+                toIndex:(NSUInteger)destinationIndex
+{
+    BNRItem *item = items[sourceIndex];
+    [items removeObjectAtIndex:sourceIndex];
+    [items insertObject:item atIndex:destinationIndex];
+}
+
 @end
