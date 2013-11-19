@@ -8,8 +8,9 @@
 
 #import "BNRItemDetailViewController.h"
 #import "BNRImageStore.h"
+#import "BNRItemStore.h"
 
-@interface BNRItemDetailViewController () <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface BNRItemDetailViewController () <UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIPopoverControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *nameField;
 @property (nonatomic, weak) IBOutlet UITextField *serialNumberField;
@@ -17,7 +18,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *creationDateLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
-
+@property (nonatomic, strong) UIPopoverController *popover;
 @end
 
 @implementation BNRItemDetailViewController
@@ -28,7 +29,6 @@
     if (!_imagePicker) {
         _imagePicker = [[UIImagePickerController alloc] init];
         _imagePicker.delegate = self;
-        // Ch. 12 Bronze Challenge
         _imagePicker.allowsEditing = YES;
     }
     return _imagePicker;
@@ -43,36 +43,40 @@
     BNRItem *item = self.item;
     
     // UI setup
-    if (self.item) {
-        // Set up text fields
-        self.nameField.text = item.itemName;
-        self.serialNumberField.text = item.serialNumber;
-        self.valueField.text = [NSString stringWithFormat:@"%d", item.valueInDollars];
-        
-        // Creation date label setup
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateStyle = NSDateFormatterMediumStyle;
-        self.creationDateLabel.text = [formatter stringFromDate:[NSDate date]];
-        
-        //
-        // Something to consider deeply: the UIImageView image is set up when this
-        // VC loads and right after a new picture is taken. The book uses the old
-        // school trick of deallocating and reallocating on viewWillAppear and
-        // viewWillDisappear, which was necessary back in iOS 5 when memory warnings
-        // were liable to swoop in and jack your shit without warning (ironic). That
-        // doesn't happen anymore, and the new best practice is to deallocate
-        // expensive resources on didReceiveMemoryWarning.
-        //
-        // Image view setup
-        if (item.imageKey) {
-            UIImage *image = [[BNRImageStore sharedStore] imageForKey:item.imageKey];
-            self.imageView.image = image;
-        }
-        
-        // Navigation bar - title setup
-        self.navigationItem.title = item.itemName;
+
+    // Set up text fields
+    self.nameField.text = item.itemName;
+    self.serialNumberField.text = item.serialNumber;
+    self.valueField.text = [NSString stringWithFormat:@"%d", item.valueInDollars];
+    
+    // Creation date label setup
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterMediumStyle;
+    self.creationDateLabel.text = [formatter stringFromDate:[NSDate date]];
+    
+    // Image view setup
+    if (item.imageKey) {
+        UIImage *image = [[BNRImageStore sharedStore] imageForKey:item.imageKey];
+        self.imageView.image = image;
     }
     
+    // Navigation bar - title setup
+    self.navigationItem.title = item.itemName;
+    
+    // Navigation bar - button setup (if new)
+    if (self.isNew) {
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc]
+                                         initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                         target:self
+                                         action:@selector(cancel:)];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                       target:self
+                                       action:@selector(save:)];
+        self.navigationItem.leftBarButtonItem = cancelButton;
+        self.navigationItem.rightBarButtonItem = doneButton;
+    }
+
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
@@ -98,6 +102,21 @@
 
 #pragma mark - Controller methods
 
+// Called by UIBarButtonItem "Done"
+- (void)save:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES
+                                                      completion:self.dismissBlock];
+}
+
+// Called by UIBarButtonItem "Cancel"
+- (void)cancel:(id)sender
+{
+    [[BNRItemStore sharedStore] deleteItem:self.item];
+    [self.presentingViewController dismissViewControllerAnimated:YES
+                                                      completion:self.dismissBlock];
+}
+
 - (void)saveItem
 {
     self.item.itemName = self.nameField.text;
@@ -113,28 +132,63 @@
 
 - (IBAction)takePicture:(id)sender
 {
-    // Use camera if it exists; otherwise, fall back to photo library
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     } else {
         self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     
-    [self presentViewController:self.imagePicker animated:true completion:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        UIBarButtonItem *cameraBarButton = (UIBarButtonItem *)sender;
+        
+        // Present the image picker in a popover. If the user taps the camera button while the
+        // popover is still visible, dismiss the popover.
+        if ([self.popover isPopoverVisible]) {
+            [self.popover dismissPopoverAnimated:YES];
+            self.popover = nil;
+        } else {
+            // Present the image picker VC in a popover
+            self.popover = [[UIPopoverController alloc]
+                            initWithContentViewController:self.imagePicker];
+            self.popover.delegate = self;
+            [self.popover presentPopoverFromBarButtonItem:cameraBarButton
+                                 permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                 animated:YES];
+        }
+    } else {
+        // Present the image picker VC modally
+        [self presentViewController:self.imagePicker animated:true completion:nil];
+    }
 }
 
-// Ch. 12 Silver Challenge - Add a button to clear image
+// Note on using popover: general approach should be to nil out the popover controller
+// when you're not using it. Makes sense -- no need to keep it around and reuse it, it's
+// just a waste of memory.
+//
+// Also, based on behavior I saw with the UIImagePickerController in ColorMyWorld, I had
+// weird problems with displaying the camera UI full-screen modally if I didn't nil out
+// the VC between each popover display. Because of that, I've made sure to nil out the
+// VC when it's not in use.
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popover = nil;
+    self.imagePicker = nil;
+    NSLog(@"User dismissed popover");
+}
+
 - (IBAction)clearImage:(id)sender
 {
     self.imageView.image = nil;
-    [[BNRImageStore sharedStore] removeImageForKey:self.item.imageKey];
-    self.item.imageKey = nil;
+    if (self.item.imageKey) {
+        [[BNRImageStore sharedStore] removeImageForKey:self.item.imageKey];
+        self.item.imageKey = nil;
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    // Ch. 12 Bronze Challenge
     UIImage *image = info[UIImagePickerControllerEditedImage];
 
     // Core Foundation UUID as a byte array
@@ -168,7 +222,16 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     
     self.imageView.image = image;
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self.popover dismissPopoverAnimated:YES];
+        self.popover = nil;
+        self.imagePicker = nil;
+    } else {
+        [picker dismissViewControllerAnimated:YES completion:^
+         {
+             self.imagePicker = nil;
+         }];
+    }
 }
 
 @end

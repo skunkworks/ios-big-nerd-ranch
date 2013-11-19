@@ -12,5 +12,7 @@
 @interface BNRItemDetailViewController : UIViewController
 
 @property (nonatomic, strong) BNRItem *item;
+@property (nonatomic) BOOL isNew;
+@property (nonatomic, copy) void (^dismissBlock)(void);
 
 @end

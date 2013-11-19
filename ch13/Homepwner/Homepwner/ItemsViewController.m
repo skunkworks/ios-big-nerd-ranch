@@ -56,18 +56,47 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
                                         toIndex:destinationIndexPath.row];
 }
+
 - (IBAction)addNewItem:(id)sender
 {
+    // Goal: present the BNRItemDetailViewControlller modally.
     BNRItem *item = [[BNRItemStore sharedStore] createItem];
-    NSArray *items = [[BNRItemStore sharedStore] allItems];
-    NSUInteger idx = [items indexOfObjectIdenticalTo:item];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:idx
-                                                inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView scrollToRowAtIndexPath:indexPath
-                          atScrollPosition:UITableViewScrollPositionBottom
-                                  animated:YES];
+
+    // Problem 1: how do we present it? Via segue? Using a modal presenter? Hard
+    // to tell until we proceed to other problems...
+    
+    // Problem 2: instantiating the BNRItemDetailViewController programmatically
+    // from the storyboard. Have to do it this clumsy way... typically we'd use
+    // a segue, but for now I've chosen to arbitrarily follow the book example.
+    // If I used a segue, I'd have to set it up to push to a navigation controller
+    // because of Problem 4...
+    NSString *storyboardName;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        storyboardName = @"Storyboard-iPad";
+    } else {
+        storyboardName = @"Storyboard";
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName
+                                                         bundle:[NSBundle mainBundle]];
+    BNRItemDetailViewController *vc = (BNRItemDetailViewController *)[storyboard
+                                       instantiateViewControllerWithIdentifier:@"BNRItemDetailViewController"];
+    
+    vc.item = item;
+    // Problem 3: how to tell the BNRItemDetailViewController to present the
+    // interface for a new item and not an existing one?
+    vc.isNew = YES;
+    vc.dismissBlock = ^{
+        [self.tableView reloadData];
+    };
+    
+    // Problem 4: if we display the VC it with a segue, we lose the navigation
+    // bar, which we will be using to show the "Done" and "Cancel" bar button
+    // items. For this reason, we wrap it in a nav controller before presenting
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:vc];
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 // The book uses an older technique to push the detail VC onto the navigation
@@ -83,16 +112,15 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 - (void)prepareForSegue:(UIStoryboardSegue *)segue
                  sender:(id)sender
 {
-    UITableViewCell *cell = (UITableViewCell *)sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
     if ([segue.identifier isEqualToString:@"Show detail view of BNRItem"]) {
+        UITableViewCell *cell = (UITableViewCell *)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        BNRItem *item = items[indexPath.row];
+        
         BNRItemDetailViewController *vc = (BNRItemDetailViewController *)segue.destinationViewController;
-        if ([vc respondsToSelector:@selector(setItem:)]) {
-            NSArray *items = [[BNRItemStore sharedStore] allItems];
-            BNRItem *item = items[indexPath.row];
-            [vc performSelector:@selector(setItem:) withObject:item];
-        }
+        vc.item = item;
+        vc.isNew = NO;
     }
 }
 

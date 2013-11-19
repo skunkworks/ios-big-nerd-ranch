@@ -30,7 +30,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="wCr-PB-qzm" kind="push" identifier="Show detail view of BNRItem" id="xZz-5s-yRM"/>
+                                    <segue destination="wCr-PB-qzm" kind="push" identifier="Show detail view of BNRItem" id="4U8-sv-YfF"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -54,7 +54,7 @@
         <!--Item Detail View Controller-->
         <scene sceneID="Cwe-zS-wh2">
             <objects>
-                <viewController id="wCr-PB-qzm" customClass="BNRItemDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BNRItemDetailViewController" id="wCr-PB-qzm" customClass="BNRItemDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0e1-j1-mrd"/>
                         <viewControllerLayoutGuide type="bottom" id="CAr-8u-hIm"/>
@@ -149,9 +149,9 @@
                             <constraint firstItem="aAj-60-CgF" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" id="7c2-6w-F4r"/>
                             <constraint firstItem="EAE-8K-Qs6" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" id="ITU-jx-7vb"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="width" secondItem="Ztr-Wa-RwU" secondAttribute="width" id="MRR-co-ldQ"/>
-                            <constraint firstItem="CAr-8u-hIm" firstAttribute="top" secondItem="ZdT-6Q-cAY" secondAttribute="bottom" id="OPO-7O-hnq"/>
                             <constraint firstItem="EAE-8K-Qs6" firstAttribute="centerY" secondItem="Yo9-oe-XmV" secondAttribute="centerY" id="PNb-ld-hjO"/>
                             <constraint firstItem="Ztr-Wa-RwU" firstAttribute="width" secondItem="Yo9-oe-XmV" secondAttribute="width" id="PrK-xo-gue"/>
+                            <constraint firstItem="Yo9-oe-XmV" firstAttribute="top" secondItem="0e1-j1-mrd" secondAttribute="bottom" constant="20" symbolic="YES" id="S0h-ds-aoE"/>
                             <constraint firstItem="ZdT-6Q-cAY" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" id="TgQ-zF-27L"/>
                             <constraint firstItem="In0-WH-or3" firstAttribute="centerY" secondItem="tL2-6i-lGQ" secondAttribute="centerY" id="V77-zD-JvQ"/>
                             <constraint firstItem="g9D-Gs-tYN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" symbolic="YES" id="Xgm-lx-TkR"/>
@@ -160,7 +160,7 @@
                             <constraint firstItem="Ztr-Wa-RwU" firstAttribute="top" secondItem="Yo9-oe-XmV" secondAttribute="bottom" constant="8" id="auU-Of-Cxm"/>
                             <constraint firstItem="Yo9-oe-XmV" firstAttribute="leading" secondItem="EAE-8K-Qs6" secondAttribute="trailing" priority="999" constant="8" id="e4f-Xc-wTb"/>
                             <constraint firstItem="JCc-JH-Pdb" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" id="eVo-Hf-85y"/>
-                            <constraint firstItem="Yo9-oe-XmV" firstAttribute="top" secondItem="0e1-j1-mrd" secondAttribute="bottom" constant="20" symbolic="YES" id="hck-T7-2Mg"/>
+                            <constraint firstItem="CAr-8u-hIm" firstAttribute="top" secondItem="ZdT-6Q-cAY" secondAttribute="bottom" id="fsd-Ix-ZeS"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="leading" secondItem="In0-WH-or3" secondAttribute="trailing" priority="999" constant="8" id="heU-GT-vyH"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="top" secondItem="Ztr-Wa-RwU" secondAttribute="bottom" constant="8" id="nRj-lJ-fTE"/>
                             <constraint firstAttribute="trailing" secondItem="tL2-6i-lGQ" secondAttribute="trailing" constant="20" id="o7Y-fb-w3E"/>
@@ -181,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVt-Ui-sZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="816" y="110"/>
+            <point key="canvasLocation" x="834" y="110"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ngS-OL-Eb7">
