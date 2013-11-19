@@ -85,7 +85,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="In0-WH-or3">
-                                <rect key="frame" x="20" y="88" width="46" height="21"/>
+                                <rect key="frame" x="20" y="89" width="46" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -115,19 +115,45 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="aAj-60-CgF">
+                                <rect key="frame" x="20" y="151" width="280" height="309"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZdT-6Q-cAY">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="camera" id="g6B-li-cBZ">
+                                        <connections>
+                                            <action selector="takePicture:" destination="wCr-PB-qzm" id="6c9-8n-v02"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WLv-a0-ly5"/>
+                                    <barButtonItem title="Clear Image" id="IsS-4P-nBt">
+                                        <connections>
+                                            <action selector="clearImage:" destination="wCr-PB-qzm" id="8cM-QL-gQM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="In0-WH-or3" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" id="0Pl-2Q-Ind"/>
                             <constraint firstAttribute="trailing" secondItem="Ztr-Wa-RwU" secondAttribute="trailing" constant="20" id="2tN-fj-iSM"/>
+                            <constraint firstItem="aAj-60-CgF" firstAttribute="top" secondItem="g9D-Gs-tYN" secondAttribute="bottom" constant="8" id="3bo-cD-eoq"/>
                             <constraint firstItem="Ztr-Wa-RwU" firstAttribute="leading" secondItem="JCc-JH-Pdb" secondAttribute="trailing" priority="999" constant="8" id="3cT-6m-OcG"/>
                             <constraint firstAttribute="trailing" secondItem="Yo9-oe-XmV" secondAttribute="trailing" constant="20" id="55l-jU-9E0"/>
                             <constraint firstAttribute="centerX" secondItem="g9D-Gs-tYN" secondAttribute="centerX" id="6VA-Ro-hci"/>
+                            <constraint firstItem="ZdT-6Q-cAY" firstAttribute="top" secondItem="aAj-60-CgF" secondAttribute="bottom" constant="8" symbolic="YES" id="6gQ-Ac-thi"/>
+                            <constraint firstItem="aAj-60-CgF" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" id="7c2-6w-F4r"/>
                             <constraint firstItem="EAE-8K-Qs6" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" id="ITU-jx-7vb"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="width" secondItem="Ztr-Wa-RwU" secondAttribute="width" id="MRR-co-ldQ"/>
+                            <constraint firstItem="CAr-8u-hIm" firstAttribute="top" secondItem="ZdT-6Q-cAY" secondAttribute="bottom" id="OPO-7O-hnq"/>
                             <constraint firstItem="EAE-8K-Qs6" firstAttribute="centerY" secondItem="Yo9-oe-XmV" secondAttribute="centerY" id="PNb-ld-hjO"/>
                             <constraint firstItem="Ztr-Wa-RwU" firstAttribute="width" secondItem="Yo9-oe-XmV" secondAttribute="width" id="PrK-xo-gue"/>
-                            <constraint firstItem="In0-WH-or3" firstAttribute="centerY" secondItem="tL2-6i-lGQ" secondAttribute="centerY" constant="-0.5" id="V77-zD-JvQ"/>
+                            <constraint firstItem="ZdT-6Q-cAY" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" id="TgQ-zF-27L"/>
+                            <constraint firstItem="In0-WH-or3" firstAttribute="centerY" secondItem="tL2-6i-lGQ" secondAttribute="centerY" id="V77-zD-JvQ"/>
                             <constraint firstItem="g9D-Gs-tYN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" symbolic="YES" id="Xgm-lx-TkR"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g9D-Gs-tYN" secondAttribute="trailing" constant="20" symbolic="YES" id="Y5k-WU-POE"/>
                             <constraint firstItem="JCc-JH-Pdb" firstAttribute="centerY" secondItem="Ztr-Wa-RwU" secondAttribute="centerY" id="aNB-dU-xFN"/>
@@ -138,6 +164,8 @@
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="leading" secondItem="In0-WH-or3" secondAttribute="trailing" priority="999" constant="8" id="heU-GT-vyH"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="top" secondItem="Ztr-Wa-RwU" secondAttribute="bottom" constant="8" id="nRj-lJ-fTE"/>
                             <constraint firstAttribute="trailing" secondItem="tL2-6i-lGQ" secondAttribute="trailing" constant="20" id="o7Y-fb-w3E"/>
+                            <constraint firstAttribute="trailing" secondItem="aAj-60-CgF" secondAttribute="trailing" constant="20" id="sl2-iu-hoZ"/>
+                            <constraint firstAttribute="trailing" secondItem="ZdT-6Q-cAY" secondAttribute="trailing" id="uJg-Sn-ktS"/>
                             <constraint firstItem="g9D-Gs-tYN" firstAttribute="top" secondItem="tL2-6i-lGQ" secondAttribute="bottom" constant="8" id="w3b-5A-QE5"/>
                         </constraints>
                     </view>
@@ -145,6 +173,7 @@
                     <navigationItem key="navigationItem" id="rMf-3r-eRr"/>
                     <connections>
                         <outlet property="creationDateLabel" destination="g9D-Gs-tYN" id="IZv-8R-Ial"/>
+                        <outlet property="imageView" destination="aAj-60-CgF" id="B4t-ek-5Nm"/>
                         <outlet property="nameField" destination="Yo9-oe-XmV" id="DeB-fA-tmm"/>
                         <outlet property="serialNumberField" destination="Ztr-Wa-RwU" id="eDY-ww-2BN"/>
                         <outlet property="valueField" destination="tL2-6i-lGQ" id="39v-gU-xxM"/>
