@@ -56,19 +56,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row
                                         toIndex:destinationIndexPath.row];
 }
-
-- (IBAction)toggleEditingMode:(UIButton *)sender
-{
-    if ([[self tableView] isEditing]) {
-        [self.tableView setEditing:NO animated:YES];
-        [sender setTitle:@"Edit" forState:UIControlStateNormal];
-    } else {
-        [self.tableView setEditing:YES animated:YES];
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-    }
-}
-
-- (IBAction)addNewItem:(UIButton *)sender
+- (IBAction)addNewItem:(id)sender
 {
     BNRItem *item = [[BNRItemStore sharedStore] createItem];
     NSArray *items = [[BNRItemStore sharedStore] allItems];
@@ -82,6 +70,16 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
                                   animated:YES];
 }
 
+// The book uses an older technique to push the detail VC onto the navigation
+// VC stack: when the user taps a row (tableView:didSelectRowAtIndexPath:), it
+// instantiates a new detail VC, sets its item property, and pushes it onto
+// self.navigationController by using pushViewController:animated:.
+//
+// Because we're using storyboards, the detail VC instantiation is handled by
+// automatically. In it, we hook up the UITableViewCell to perform a push segue
+// with a particular name. Then, when the user selects the cell, it performs
+// the segue and instantiates the VC for us. Before it pushes the VC onto the
+// stack, it lets us pass data to the new VC by calling prepareForSegue:sender:.
 - (void)prepareForSegue:(UIStoryboardSegue *)segue
                  sender:(id)sender
 {
@@ -96,6 +94,26 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
             [vc performSelector:@selector(setItem:) withObject:item];
         }
     }
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Note: we don't have to create a navigation item ourselves. In fact, it's
+    // a readonly property. Just read it and modify it.
+    self.navigationItem.title = @"Homepwner";
+
+    // We set up the navigation bar button item for Edit in code UIViewController
+    // offers a free one that does everything we need. The Add New (+) item is
+    // in the storyboard...
+    // I can't believe they provide this for free...
+    self.navigationItem.leftBarButtonItem = [self editButtonItem];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 @end

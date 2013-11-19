@@ -10,5 +10,7 @@
 #import "BNRItem.h"
 
 @interface BNRItemDetailViewController : UIViewController
+
 @property (nonatomic, strong) BNRItem *item;
+
 @end
