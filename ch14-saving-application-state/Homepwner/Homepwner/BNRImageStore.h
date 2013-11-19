@@ -14,8 +14,9 @@
 
 - (UIImage *)imageForKey:(NSString *)key;
 
-- (void)setImage:(UIImage*)image
+- (void)setImage:(UIImage *)image
           forKey:(NSString *)key;
 
 - (void)removeImageForKey:(NSString *)key;
+
 @end

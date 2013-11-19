@@ -7,6 +7,7 @@
 //
 
 #import "BNRItemStore.h"
+#import "BNRImageStore.h"
 
 @implementation BNRItemStore
 
@@ -26,7 +27,11 @@
 - (id)init
 {
     if (self = [super init]) {
-        items = [[NSMutableArray alloc] init];
+        NSString *archivePath = [self itemArchivePath];
+        
+        items = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
+        
+        if (!items) items = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -45,6 +50,7 @@
 
 - (void)deleteItem:(BNRItem *)item
 {
+    [[BNRImageStore sharedStore] removeImageForKey:item.imageKey];
     [items removeObjectIdenticalTo:item];
 }
 
@@ -54,6 +60,32 @@
     BNRItem *item = items[sourceIndex];
     [items removeObjectAtIndex:sourceIndex];
     [items insertObject:item atIndex:destinationIndex];
+}
+
+// Overview of how object archiving works:
+// 1. Set up model class to implement NSCoding protocol
+// 2. NSCoding protocol consists of two methods: initWithCoder: and encodeWithCoder:. These
+//    two methods will freeze-dry and rehydrate your object. Use the NSCoder object passed
+//    in to encode and decode objects and other variables for given keys.
+// 3. Decide upon a good location for your archive file. Documents directory is a good choice.
+// 4. Implement a method that saves all model objects. This will use the NSKeyedArchiver class
+//    method archiveRootObject:toFile:. Pass in the root object to save (e.g. array of all
+//    models) and pass in a URI to the file.
+// 5. Call the saveChanges method when the application is sent to the background.
+- (NSString *)itemArchivePath
+{
+    NSArray *urls = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                           inDomains:NSUserDomainMask];
+    NSURL *documentsURL = [urls firstObject];
+    NSURL *fileURL = [documentsURL URLByAppendingPathComponent:@"items.archive"];
+    return [fileURL path];
+}
+
+- (BOOL)saveChanges
+{
+    NSString *archivePath = [self itemArchivePath];
+    return [NSKeyedArchiver archiveRootObject:items
+                                       toFile:archivePath];
 }
 
 @end

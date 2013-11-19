@@ -22,4 +22,11 @@
 - (void)deleteItem:(BNRItem *)item;
 - (void)moveItemAtIndex:(NSUInteger)sourceIndex
                 toIndex:(NSUInteger)destinationIndex;
+
+// Returns path to the item archive file in the Documents directory
+- (NSString *)itemArchivePath;
+
+// Saves items to the item archive file
+- (BOOL)saveChanges;
+
 @end

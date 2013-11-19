@@ -11,7 +11,7 @@
 @implementation BNRItem
 @synthesize container;
 @synthesize containedItem;
-@synthesize itemName, serialNumber, dateCreated, valueInDollars;
+@synthesize itemName, serialNumber, dateCreated, valueInDollars, imageKey;
 
 + (id)randomItem
 {
@@ -98,6 +98,34 @@
 - (void)dealloc
 {
     NSLog(@"Destroyed: %@ ", self);
+}
+
+#pragma mark - NSCoding protocol methods
+
+// Follows the same pattern as all other init methods re: super init, but doesn't fit
+// into the typical chain of init methods pattern (doesn't call designated initializer)
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        itemName = [aDecoder decodeObjectForKey:@"itemName"];
+        serialNumber = [aDecoder decodeObjectForKey:@"serialNumber"];
+        dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
+        imageKey = [aDecoder decodeObjectForKey:@"imageKey"];
+        
+        valueInDollars = [aDecoder decodeIntForKey:@"valueInDollars"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:itemName forKey:@"itemName"];
+    [aCoder encodeObject:serialNumber forKey:@"serialNumber"];
+    [aCoder encodeObject:dateCreated forKey:@"dateCreated"];
+    [aCoder encodeObject:imageKey forKey:@"imageKey"];
+    
+    [aCoder encodeInt:valueInDollars forKey:@"valueInDollars"];
 }
 
 @end
