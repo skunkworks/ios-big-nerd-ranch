@@ -9,6 +9,13 @@
 #import "ItemsViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItemDetailViewController.h"
+#import "HomepwnerItemCell.h"
+#import "ImageScrollViewController.h"
+#import "BNRImageStore.h"
+
+@interface ItemsViewController () <UIPopoverControllerDelegate>
+@property (nonatomic, strong) UIPopoverController *popover;
+@end
 
 @implementation ItemsViewController
 
@@ -17,11 +24,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"BNRItemCell"];
+    HomepwnerItemCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"HomepwnerItemCell"];
     
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     BNRItem *item = items[indexPath.row];
-    cell.textLabel.text = [item description];
+    
+    cell.nameLabel.text = item.itemName;
+    cell.serialLabel.text = item.serialNumber;
+    cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+    cell.thumbnailView.image = item.thumbnail;
+
+    // Used to receive messages from the cell
+    cell.controller = self;
+    
     return cell;
 }
 
@@ -142,6 +157,43 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+}
+
+- (void)showImageForCell:(HomepwnerItemCell *)cell
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if ([self.popover isPopoverVisible]) {
+            [self.popover dismissPopoverAnimated:YES];
+            self.popover = nil;
+            return;
+        }
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        BNRItem *item = items[indexPath.row];
+        UIImage *image = [[BNRImageStore sharedStore] imageForKey:item.imageKey];
+        if (!image) return;
+        
+        ImageScrollViewController *imageScrollVC = [[ImageScrollViewController alloc] init];
+        imageScrollVC.image = image;
+        
+        CGRect rect = [[self view] convertRect:cell.thumbnailView.frame
+                                      fromView:cell];
+        
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:imageScrollVC];
+        self.popover.delegate = self;
+        [self.popover setPopoverContentSize:CGSizeMake(600, 600)];
+        [self.popover presentPopoverFromRect:rect
+                                      inView:self.view
+                    permittedArrowDirections:UIPopoverArrowDirectionAny
+                                    animated:YES];
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popover = nil;
 }
 
 @end

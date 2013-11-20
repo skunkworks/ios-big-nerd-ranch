@@ -95,6 +95,7 @@
      dateCreated];
     return descriptionString;
 }
+
 - (void)dealloc
 {
     NSLog(@"Destroyed: %@ ", self);
@@ -112,6 +113,7 @@
         serialNumber = [aDecoder decodeObjectForKey:@"serialNumber"];
         dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
         imageKey = [aDecoder decodeObjectForKey:@"imageKey"];
+        self.thumbnailData = [aDecoder decodeObjectForKey:@"thumbnailData"];
         
         valueInDollars = [aDecoder decodeIntForKey:@"valueInDollars"];
     }
@@ -124,8 +126,57 @@
     [aCoder encodeObject:serialNumber forKey:@"serialNumber"];
     [aCoder encodeObject:dateCreated forKey:@"dateCreated"];
     [aCoder encodeObject:imageKey forKey:@"imageKey"];
+    [aCoder encodeObject:self.thumbnailData forKey:@"thumbnailData"];
     
     [aCoder encodeInt:valueInDollars forKey:@"valueInDollars"];
+}
+
+#pragma mark - Thumbnails
+
+- (UIImage *)thumbnail
+{
+    if (!self.thumbnailData) return nil;
+    if (!_thumbnail) _thumbnail = [UIImage imageWithData:self.thumbnailData];
+    return _thumbnail;
+}
+
+- (void)setThumbnailDataFromImage:(UIImage *)image
+{
+    // Create thumbnail image
+    UIImage *thumbnail = [self generateThumbnailFromImage:image];
+    self.thumbnailData = UIImagePNGRepresentation(thumbnail);
+    self.thumbnail = thumbnail;
+}
+
+#define THUMBNAIL_DIMENSION 43
+- (UIImage *)generateThumbnailFromImage:(UIImage *)image
+{
+    CGSize originalImageSize = image.size;
+    CGRect newRect = CGRectMake(0, 0, THUMBNAIL_DIMENSION, THUMBNAIL_DIMENSION);
+    
+    float ratio = MAX(newRect.size.width / originalImageSize.width,
+                      newRect.size.height / originalImageSize.height);
+    
+    // Create a transparent bitmap context with a scaling factor = screen
+    UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:newRect];
+    
+    [path addClip];
+    
+    CGRect projectRect;
+    projectRect.size.width = ratio * originalImageSize.width;
+    projectRect.size.height = ratio * originalImageSize.height;
+    projectRect.origin.x = (newRect.size.width - projectRect.size.width)/2;
+    projectRect.origin.y = (newRect.size.height - projectRect.size.height)/2;
+    
+    [image drawInRect:projectRect];
+    
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
 }
 
 @end

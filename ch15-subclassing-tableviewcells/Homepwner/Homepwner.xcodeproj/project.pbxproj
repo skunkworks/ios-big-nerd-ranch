@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A5BFC18183B2D7800C1DCD6 /* BNRImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BFC17183B2D7800C1DCD6 /* BNRImageStore.m */; };
 		4A5BFC1B183BCE0C00C1DCD6 /* Storyboard-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BFC1A183BCE0C00C1DCD6 /* Storyboard-iPad.storyboard */; };
+		4A5BFC24183C2C1D00C1DCD6 /* HomepwnerItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BFC23183C2C1D00C1DCD6 /* HomepwnerItemCell.m */; };
+		4A5BFC2C183C694200C1DCD6 /* ImageScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BFC2B183C694200C1DCD6 /* ImageScrollViewController.m */; };
+		4A5BFC2E183C7F8600C1DCD6 /* ImageScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BFC2D183C7F8600C1DCD6 /* ImageScrollViewController.xib */; };
 		4AD31CD71839DE8F0075E2AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CD61839DE8F0075E2AF /* Foundation.framework */; };
 		4AD31CD91839DE8F0075E2AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CD81839DE8F0075E2AF /* CoreGraphics.framework */; };
 		4AD31CDB1839DE8F0075E2AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CDA1839DE8F0075E2AF /* UIKit.framework */; };
@@ -42,6 +45,11 @@
 		4A5BFC16183B2D7800C1DCD6 /* BNRImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRImageStore.h; sourceTree = "<group>"; };
 		4A5BFC17183B2D7800C1DCD6 /* BNRImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRImageStore.m; sourceTree = "<group>"; };
 		4A5BFC1A183BCE0C00C1DCD6 /* Storyboard-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Storyboard-iPad.storyboard"; sourceTree = "<group>"; };
+		4A5BFC22183C2C1D00C1DCD6 /* HomepwnerItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomepwnerItemCell.h; sourceTree = "<group>"; };
+		4A5BFC23183C2C1D00C1DCD6 /* HomepwnerItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomepwnerItemCell.m; sourceTree = "<group>"; };
+		4A5BFC2A183C694200C1DCD6 /* ImageScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScrollViewController.h; sourceTree = "<group>"; };
+		4A5BFC2B183C694200C1DCD6 /* ImageScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScrollViewController.m; sourceTree = "<group>"; };
+		4A5BFC2D183C7F8600C1DCD6 /* ImageScrollViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageScrollViewController.xib; sourceTree = "<group>"; };
 		4AD31CD31839DE8F0075E2AF /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD31CD61839DE8F0075E2AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AD31CD81839DE8F0075E2AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,8 +136,13 @@
 			children = (
 				4AD31D051839DEA30075E2AF /* ItemsViewController.h */,
 				4AD31D061839DEA30075E2AF /* ItemsViewController.m */,
+				4A5BFC22183C2C1D00C1DCD6 /* HomepwnerItemCell.h */,
+				4A5BFC23183C2C1D00C1DCD6 /* HomepwnerItemCell.m */,
 				4AD31D51183AB1460075E2AF /* BNRItemDetailViewController.h */,
 				4AD31D52183AB1460075E2AF /* BNRItemDetailViewController.m */,
+				4A5BFC2A183C694200C1DCD6 /* ImageScrollViewController.h */,
+				4A5BFC2B183C694200C1DCD6 /* ImageScrollViewController.m */,
+				4A5BFC2D183C7F8600C1DCD6 /* ImageScrollViewController.xib */,
 				4AD31D081839E0B10075E2AF /* BNRItem.h */,
 				4AD31D091839E0B10075E2AF /* BNRItem.m */,
 				4AD31D0B1839E18A0075E2AF /* BNRItemStore.h */,
@@ -255,6 +268,7 @@
 				4A5BFC1B183BCE0C00C1DCD6 /* Storyboard-iPad.storyboard in Resources */,
 				4AD31CE91839DE8F0075E2AF /* Images.xcassets in Resources */,
 				4AD31D0F183A8CBC0075E2AF /* Storyboard.storyboard in Resources */,
+				4A5BFC2E183C7F8600C1DCD6 /* ImageScrollViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +288,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD31D0D1839E18A0075E2AF /* BNRItemStore.m in Sources */,
+				4A5BFC2C183C694200C1DCD6 /* ImageScrollViewController.m in Sources */,
 				4AD31D071839DEA30075E2AF /* ItemsViewController.m in Sources */,
+				4A5BFC24183C2C1D00C1DCD6 /* HomepwnerItemCell.m in Sources */,
 				4A5BFC18183B2D7800C1DCD6 /* BNRImageStore.m in Sources */,
 				4AD31D0A1839E0B10075E2AF /* BNRItem.m in Sources */,
 				4AD31D53183AB1460075E2AF /* BNRItemDetailViewController.m in Sources */,

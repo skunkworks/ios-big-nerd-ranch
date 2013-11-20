@@ -142,13 +142,10 @@
     {
         UIBarButtonItem *cameraBarButton = (UIBarButtonItem *)sender;
         
-        // Present the image picker in a popover. If the user taps the camera button while the
-        // popover is still visible, dismiss the popover.
         if ([self.popover isPopoverVisible]) {
             [self.popover dismissPopoverAnimated:YES];
             self.popover = nil;
         } else {
-            // Present the image picker VC in a popover
             self.popover = [[UIPopoverController alloc]
                             initWithContentViewController:self.imagePicker];
             self.popover.delegate = self;
@@ -157,24 +154,14 @@
                                                  animated:YES];
         }
     } else {
-        // Present the image picker VC modally
         [self presentViewController:self.imagePicker animated:true completion:nil];
     }
 }
 
-// Note on using popover: general approach should be to nil out the popover controller
-// when you're not using it. Makes sense -- no need to keep it around and reuse it, it's
-// just a waste of memory.
-//
-// Also, based on behavior I saw with the UIImagePickerController in ColorMyWorld, I had
-// weird problems with displaying the camera UI full-screen modally if I didn't nil out
-// the VC between each popover display. Because of that, I've made sure to nil out the
-// VC when it's not in use.
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.popover = nil;
     self.imagePicker = nil;
-    NSLog(@"User dismissed popover");
 }
 
 - (IBAction)clearImage:(id)sender
@@ -197,26 +184,13 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     CFStringRef uuidString = CFUUIDCreateString(kCFAllocatorDefault, uuid);
     // Use UUID string as the image key
     NSString *key = (__bridge NSString *)uuidString;
-    // Note: __bridge creates a "toll-free bridge" that allows us to convert from
-    // a CFString to an NSString with a simple cast. This is because the two types
-    // are represented the same in memory. We could just do a straight NSString *
-    // cast, but ARC has some difficulty managing Core Foundation pointers. The
-    // __bridge keyword tells ARC to not give ownership of the object to the new
-    // pointer.
-    
     self.item.imageKey = key;
     
     // Store image in cache
     [[BNRImageStore sharedStore] setImage:image forKey:key];
+    // Generate image thumbnail for item
+    [self.item setThumbnailDataFromImage:image];
     
-    // Rules for handling Core Foundation pointers:
-    // 1. A pointer only owns the object it points to if the method that created
-    //    the object contained the word Create or Copy.
-    // 2. If a pointer owns a Core Foundation object, you must call CFRelease on
-    //    the pointer before you lose that object. An object can be lost if the
-    //    pointer points at a new object, or points at nil/NULL, or if the pointer
-    //    itself is destroyed.
-    // 3. Once you call CFRelease on a pointer, you can't use that pointer again.
     CFRelease(uuid);
     CFRelease(uuidString);
     
