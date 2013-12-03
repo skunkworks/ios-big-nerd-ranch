@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A26CE04184E8FD700A30570 /* BNRMapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26CE03184E8FD700A30570 /* BNRMapPoint.m */; };
 		4AED57841838394200A9A7BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AED57831838394200A9A7BF /* Foundation.framework */; };
 		4AED57861838394200A9A7BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AED57851838394200A9A7BF /* CoreGraphics.framework */; };
 		4AED57881838394200A9A7BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AED57871838394200A9A7BF /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A26CE02184E8FD700A30570 /* BNRMapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRMapPoint.h; sourceTree = "<group>"; };
+		4A26CE03184E8FD700A30570 /* BNRMapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRMapPoint.m; sourceTree = "<group>"; };
 		4AED57801838394200A9A7BF /* Whereami.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Whereami.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AED57831838394200A9A7BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AED57851838394200A9A7BF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -120,6 +123,8 @@
 		4AED57891838394200A9A7BF /* Whereami */ = {
 			isa = PBXGroup;
 			children = (
+				4A26CE02184E8FD700A30570 /* BNRMapPoint.h */,
+				4A26CE03184E8FD700A30570 /* BNRMapPoint.m */,
 				4AED57921838394200A9A7BF /* WhereamiAppDelegate.h */,
 				4AED57931838394200A9A7BF /* WhereamiAppDelegate.m */,
 				4AED57951838394200A9A7BF /* Main.storyboard */,
@@ -260,6 +265,7 @@
 			files = (
 				4AED57941838394200A9A7BF /* WhereamiAppDelegate.m in Sources */,
 				4AED57901838394200A9A7BF /* main.m in Sources */,
+				4A26CE04184E8FD700A30570 /* BNRMapPoint.m in Sources */,
 				4AED579A1838394200A9A7BF /* WhereamiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
