@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4ABA6027184EC626009F1282 /* bnrlogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4ABA6026184EC626009F1282 /* bnrlogo.png */; };
 		4AD31BFD1839346C0075E2AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31BFC1839346C0075E2AF /* Foundation.framework */; };
 		4AD31BFF1839346C0075E2AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31BFE1839346C0075E2AF /* CoreGraphics.framework */; };
 		4AD31C011839346C0075E2AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31C001839346C0075E2AF /* UIKit.framework */; };
@@ -20,7 +21,6 @@
 		4AD31C201839346C0075E2AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31C1E1839346C0075E2AF /* InfoPlist.strings */; };
 		4AD31C221839346C0075E2AF /* HypnosisterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31C211839346C0075E2AF /* HypnosisterTests.m */; };
 		4AD31C2D183935020075E2AF /* HypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31C2C183935020075E2AF /* HypnosisView.m */; };
-		4AD31C2F1839649A0075E2AF /* bnr-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AD31C2E1839649A0075E2AF /* bnr-logo.png */; };
 		4AD31C32183964C60075E2AF /* BNRLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD31C31183964C60075E2AF /* BNRLogoView.m */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4ABA6026184EC626009F1282 /* bnrlogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bnrlogo.png; sourceTree = "<group>"; };
 		4AD31BF91839346C0075E2AF /* Hypnosister.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hypnosister.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD31BFC1839346C0075E2AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AD31BFE1839346C0075E2AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,7 +54,6 @@
 		4AD31C211839346C0075E2AF /* HypnosisterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HypnosisterTests.m; sourceTree = "<group>"; };
 		4AD31C2B183935020075E2AF /* HypnosisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HypnosisView.h; sourceTree = "<group>"; };
 		4AD31C2C183935020075E2AF /* HypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HypnosisView.m; sourceTree = "<group>"; };
-		4AD31C2E1839649A0075E2AF /* bnr-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bnr-logo.png"; path = "../../../../../Documents/bnr-logo.png"; sourceTree = "<group>"; };
 		4AD31C30183964C60075E2AF /* BNRLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRLogoView.h; sourceTree = "<group>"; };
 		4AD31C31183964C60075E2AF /* BNRLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRLogoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,7 +130,7 @@
 		4AD31C031839346C0075E2AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4AD31C2E1839649A0075E2AF /* bnr-logo.png */,
+				4ABA6026184EC626009F1282 /* bnrlogo.png */,
 				4AD31C041839346C0075E2AF /* Hypnosister-Info.plist */,
 				4AD31C051839346C0075E2AF /* InfoPlist.strings */,
 				4AD31C081839346C0075E2AF /* main.m */,
@@ -233,9 +233,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AD31C2F1839649A0075E2AF /* bnr-logo.png in Resources */,
 				4AD31C071839346C0075E2AF /* InfoPlist.strings in Resources */,
 				4AD31C0F1839346C0075E2AF /* Images.xcassets in Resources */,
+				4ABA6027184EC626009F1282 /* bnrlogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +458,7 @@
 				4AD31C271839346C0075E2AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AD31C281839346C0075E2AF /* Build configuration list for PBXNativeTarget "HypnosisterTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +467,7 @@
 				4AD31C2A1839346C0075E2AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

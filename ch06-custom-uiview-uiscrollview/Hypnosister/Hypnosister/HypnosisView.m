@@ -43,20 +43,19 @@
     // Set line thickness to 10px
     CGContextSetLineWidth(ctx, 10);
     
-//    Ch. 5 Bronze Challenge - set circle color to change
+//    Ch. 6 Bronze Challenge - set circle color to change
 //    NSArray *circleColors = @[[UIColor lightGrayColor],
 //                              [UIColor blackColor],
 //                              [UIColor redColor],
 //                              [UIColor yellowColor],
 //                              [UIColor redColor],
 //                              [UIColor orangeColor]];
-//    self.circleColor = [circleColors objectAtIndex:arc4random()%([circleColors count]+1)];
     
     // Set color of circle
     [self.circleColor setStroke];
     
     for (float currRadius = maxRadius; currRadius > 0; currRadius -= 20) {
-//    Ch. 5 Bronze Challenge - set circle color to change
+//    Ch. 6 Bronze Challenge - set circle color to change
 //        self.circleColor = [circleColors objectAtIndex:arc4random()%[circleColors count]];
 //        [self.circleColor setStroke];
         
@@ -84,7 +83,7 @@
     [text drawInRect:textRect];
     
     //
-    // Ch. 5 Silver Challenge - add green crosshair to middle of view
+    // Ch. 6 Silver Challenge - add green crosshair to middle of view
     // Note: book says to use CGContextSaveGState and CGContextRestoreGState,
     // but that's only necessary if we had to switch back to a drawing context
     // that was previously defined.
