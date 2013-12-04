@@ -108,6 +108,12 @@
     return NO;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+    [super touchesBegan:touches withEvent:event];
+}
+
 - (void)zoomToLocationCoordinate:(CLLocationCoordinate2D)coord
 {
     MKCoordinateRegion userRegion = MKCoordinateRegionMakeWithDistance(coord, 250, 250);
