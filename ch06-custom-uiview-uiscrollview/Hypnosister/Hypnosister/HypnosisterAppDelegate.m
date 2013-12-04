@@ -27,6 +27,7 @@
     
     CGRect hypnosisViewRect = CGRectMake(0, 0, windowBounds.size.width, windowBounds.size.height);
     _hypnosisView = [[HypnosisView alloc] initWithFrame:hypnosisViewRect];
+    [_hypnosisView becomeFirstResponder];
     
     // Ch. 5 Gold Challenge - Draw a clipped circle logo image
     CGRect logoViewRect = CGRectMake(100, 100, 100, 100);
