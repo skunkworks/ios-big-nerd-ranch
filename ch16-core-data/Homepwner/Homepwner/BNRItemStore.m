@@ -8,6 +8,10 @@
 
 #import "BNRItemStore.h"
 
+@interface BNRItemStore ()
+@property (nonatomic, strong) NSMutableArray *items;
+@end
+
 @implementation BNRItemStore
 
 + (BNRItemStore *)sharedStore
@@ -27,9 +31,9 @@
 {
     if (self = [super init]) {
         NSString *path = [self itemArchivePath];
-        items = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-        if (!items) {
-            items = [[NSMutableArray alloc] init];
+        _items = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        if (_items) {
+            _items = [[NSMutableArray alloc] init];
         }
     }
     return self;
@@ -37,33 +41,33 @@
 
 - (NSArray *)allItems
 {
-    return [items copy];
+    return [self.items copy];
 }
 
 - (BNRItem *)createItem
 {
     BNRItem *item = [[BNRItem alloc] init];
-    [items addObject:item];
+    [self.items addObject:item];
     return item;
 }
 
 - (void)deleteItem:(BNRItem *)item
 {
-    [items removeObjectIdenticalTo:item];
+    [self.items removeObjectIdenticalTo:item];
 }
 
 - (void)moveItemAtIndex:(NSUInteger)sourceIndex
                 toIndex:(NSUInteger)destinationIndex
 {
-    BNRItem *item = items[sourceIndex];
-    [items removeObjectAtIndex:sourceIndex];
-    [items insertObject:item atIndex:destinationIndex];
+    BNRItem *item = self.items[sourceIndex];
+    [self.items removeObjectAtIndex:sourceIndex];
+    [self.items insertObject:item atIndex:destinationIndex];
 }
 
 - (BOOL)saveItems
 {
     NSString *path = [self itemArchivePath];
-    return [NSKeyedArchiver archiveRootObject:items toFile:path];
+    return [NSKeyedArchiver archiveRootObject:self.items toFile:path];
 }
 
 // Book has us declare this in header file, but why does anyone else other

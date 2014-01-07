@@ -10,9 +10,6 @@
 #import "BNRItem.h"
 
 @interface BNRItemStore : NSObject
-{
-    NSMutableArray *items;
-}
 
 // Singleton interface
 + (BNRItemStore *)sharedStore;
