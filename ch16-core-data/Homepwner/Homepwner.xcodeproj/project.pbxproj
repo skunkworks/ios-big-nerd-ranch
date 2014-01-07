@@ -11,6 +11,7 @@
 		4A3A6AF11872153800C549A3 /* HomepwnerItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A6AF01872153800C549A3 /* HomepwnerItemCell.m */; };
 		4A3A6AF718728EDE00C549A3 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A6AF518728EDE00C549A3 /* ImageViewController.m */; };
 		4A3A6AF818728EDE00C549A3 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3A6AF618728EDE00C549A3 /* ImageViewController.xib */; };
+		4A3A6B0D187CB00700C549A3 /* Homepwner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A6B0B187CB00700C549A3 /* Homepwner.xcdatamodeld */; };
 		4AD31CD71839DE8F0075E2AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CD61839DE8F0075E2AF /* Foundation.framework */; };
 		4AD31CD91839DE8F0075E2AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CD81839DE8F0075E2AF /* CoreGraphics.framework */; };
 		4AD31CDB1839DE8F0075E2AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CDA1839DE8F0075E2AF /* UIKit.framework */; };
@@ -48,6 +49,7 @@
 		4A3A6AF418728EDE00C549A3 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		4A3A6AF518728EDE00C549A3 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		4A3A6AF618728EDE00C549A3 /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		4A3A6B0C187CB00700C549A3 /* Homepwner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Homepwner.xcdatamodel; sourceTree = "<group>"; };
 		4AD31CD31839DE8F0075E2AF /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD31CD61839DE8F0075E2AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AD31CD81839DE8F0075E2AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +143,7 @@
 			children = (
 				4A1BDBA51864C41600E1F065 /* iPad */,
 				4AD31D051839DEA30075E2AF /* ItemsViewController.h */,
+				4A3A6B0B187CB00700C549A3 /* Homepwner.xcdatamodeld */,
 				4AD31D061839DEA30075E2AF /* ItemsViewController.m */,
 				4AD31D51183AB1460075E2AF /* BNRItemDetailViewController.h */,
 				4AD31D52183AB1460075E2AF /* BNRItemDetailViewController.m */,
@@ -300,6 +303,7 @@
 				4A3A6AF718728EDE00C549A3 /* ImageViewController.m in Sources */,
 				4AD31CE71839DE8F0075E2AF /* HomepwnerAppDelegate.m in Sources */,
 				4AD31CE31839DE8F0075E2AF /* main.m in Sources */,
+				4A3A6B0D187CB00700C549A3 /* Homepwner.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +520,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4A3A6B0B187CB00700C549A3 /* Homepwner.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4A3A6B0C187CB00700C549A3 /* Homepwner.xcdatamodel */,
+			);
+			currentVersion = 4A3A6B0C187CB00700C549A3 /* Homepwner.xcdatamodel */;
+			path = Homepwner.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4AD31CCB1839DE8F0075E2AF /* Project object */;
 }
