@@ -58,12 +58,12 @@
     CGContextDrawPath(ctx, kCGPathFillStroke);
     
     // Clip to circle path before drawing UIImage logo
-    CGContextSaveGState(ctx);
+    //CGContextSaveGState(ctx);
     CGContextAddPath(ctx, path);
     CGContextClip(ctx);
     [logoImage drawInRect:rect];
     CGContextDrawLinearGradient(ctx, gradient, CGPointMake(0, 0), CGPointMake(rect.size.width, rect.size.height), kCGGradientDrawsBeforeStartLocation);
-    CGContextRestoreGState(ctx);
+    //CGContextRestoreGState(ctx);
 }
 
 @end
