@@ -51,9 +51,10 @@
         self.nameField.text = item.itemName;
         self.serialNumberField.text = item.serialNumber;
         self.valueField.text = [NSString stringWithFormat:@"%d", item.valueInDollars];
+        NSDate *dateCreated = [NSDate dateWithTimeIntervalSinceReferenceDate:item.dateCreated];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateStyle = NSDateFormatterMediumStyle;
-        self.creationDateLabel.text = [formatter stringFromDate:[NSDate date]];
+        self.creationDateLabel.text = [formatter stringFromDate:dateCreated];
         
         if (self.item.imageKey) {
             UIImage *image = [[BNRImageStore sharedStore] imageForKey:self.item.imageKey];
