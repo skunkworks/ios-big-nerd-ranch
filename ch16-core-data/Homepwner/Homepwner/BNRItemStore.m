@@ -119,9 +119,34 @@
 - (void)moveItemAtIndex:(NSUInteger)sourceIndex
                 toIndex:(NSUInteger)destinationIndex
 {
+    if (sourceIndex == destinationIndex) return;
+    
     BNRItem *item = self.items[sourceIndex];
     [self.items removeObjectAtIndex:sourceIndex];
     [self.items insertObject:item atIndex:destinationIndex];
+    
+    // Update item's orderingValue to reflect its updated position
+    double lowerBound = 0.0;
+    
+    // Find the lower bound: the previous item's orderingValue, or if the destination is
+    // the first position, set it to the next item - 2.0.
+    if (destinationIndex > 0) {
+        lowerBound = [self.items[destinationIndex - 1] orderingValue];
+    } else {
+        lowerBound = [self.items[1] orderingValue] - 2.0;
+    }
+    
+    // Find upper bound: the next item's orderingValue, or if the destination is the last
+    // position, set it to the previous item + 2.0.
+    double upperBound = 0.0;
+    if (destinationIndex == [self.items count] - 1) {
+        upperBound = [self.items[destinationIndex - 1] orderingValue] + 2.0;
+    } else {
+        upperBound = [self.items[destinationIndex + 1] orderingValue];
+    }
+    
+    // Item's new ordering value is in between the lower and upper
+    item.orderingValue = (lowerBound + upperBound) / 2.0;
 }
 
 - (BOOL)saveItems
