@@ -19,7 +19,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *creationDateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *assetTypeButton;
-@property (nonatomic, strong) UIPopoverController *popoverVC;
+@property (nonatomic, strong) UIPopoverController *popover;
 
 @end
 
@@ -89,6 +89,11 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self updateAssetTypeButtonLabel];
+}
+
+- (void)updateAssetTypeButtonLabel
+{
     NSString *assetTypeLabel = [self.item.assetType valueForKey:@"label"];
     if (!assetTypeLabel) {
         assetTypeLabel = @"None";
@@ -126,14 +131,14 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         [self presentViewController:imagePicker animated:YES completion:nil];
     } else {
-        if ([self.popoverVC isPopoverVisible]) {
-            [self.popoverVC dismissPopoverAnimated:YES];
-            self.popoverVC = nil;
+        if ([self.popover isPopoverVisible]) {
+            [self.popover dismissPopoverAnimated:YES];
+            self.popover = nil;
             return;
         }
-        self.popoverVC = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
-        [self.popoverVC setDelegate:self];
-        [self.popoverVC presentPopoverFromBarButtonItem:sender
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [self.popover setDelegate:self];
+        [self.popover presentPopoverFromBarButtonItem:sender
                                permittedArrowDirections:UIPopoverArrowDirectionAny
                                                animated:YES];
     }
@@ -161,9 +166,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     CFRelease(newUniqueID);
     CFRelease(newUniqueIDString);
     
-    if (self.popoverVC) {
-        [self.popoverVC dismissPopoverAnimated:YES];
-        self.popoverVC = nil;
+    if (self.popover) {
+        [self.popover dismissPopoverAnimated:YES];
+        self.popover = nil;
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -171,7 +176,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
-    self.popoverVC = nil;
+    self.popover = nil;
 }
 
 - (void)done:(id)sender
@@ -190,6 +195,25 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     BNRAssetTypePickerController *picker = [[BNRAssetTypePickerController alloc] init];
     picker.item = self.item;
     
-    [self.navigationController pushViewController:picker animated:YES];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        picker.dismissBlock = ^{
+            [self.popover dismissPopoverAnimated:YES];
+            [self updateAssetTypeButtonLabel];
+        };
+        
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:picker];
+    
+        CGRect buttonRect = [self.view convertRect:[sender bounds] fromView:sender];
+        [self.popover presentPopoverFromRect:buttonRect
+                                      inView:self.view
+                    permittedArrowDirections:UIPopoverArrowDirectionAny
+                                    animated:YES];
+    } else {
+        picker.dismissBlock = ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+        [self.navigationController pushViewController:picker animated:YES];
+    }
 }
+
 @end

@@ -60,8 +60,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSArray *assetTypes = [[BNRItemStore sharedStore] allAssetTypes];
     NSManagedObject *assetType = assetTypes[indexPath.row];
     self.item.assetType = assetType;
-    
-    [self.navigationController popViewControllerAnimated:YES];
+
+    self.dismissBlock();
 }
 
 
