@@ -9,6 +9,7 @@
 #import "BNRItemDetailViewController.h"
 #import "BNRImageStore.h"
 #import "BNRItemStore.h"
+#import "BNRAssetTypePickerController.h"
 
 @interface BNRItemDetailViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverControllerDelegate>
 
@@ -17,6 +18,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *valueField;
 @property (nonatomic, weak) IBOutlet UILabel *creationDateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIButton *assetTypeButton;
 @property (nonatomic, strong) UIPopoverController *popoverVC;
 
 @end
@@ -83,6 +85,17 @@
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
     [self saveItem];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSString *assetTypeLabel = [self.item.assetType valueForKey:@"label"];
+    if (!assetTypeLabel) {
+        assetTypeLabel = @"None";
+    }
+    
+    NSString *title = [NSString stringWithFormat:@"Type: %@", assetTypeLabel];
+    [self.assetTypeButton setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)saveItem
@@ -172,4 +185,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 
+- (IBAction)showAssetTypePicker:(id)sender
+{
+    BNRAssetTypePickerController *picker = [[BNRAssetTypePickerController alloc] init];
+    picker.item = self.item;
+    
+    [self.navigationController pushViewController:picker animated:YES];
+}
 @end

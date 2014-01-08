@@ -62,14 +62,14 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creation Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9D-Gs-tYN">
-                                <rect key="frame" x="107" y="122" width="106" height="21"/>
+                                <rect key="frame" x="107" y="160" width="106" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="249" verticalHuggingPriority="249" verticalCompressionResistancePriority="732" translatesAutoresizingMaskIntoConstraints="NO" id="5eC-j4-ec8">
-                                <rect key="frame" x="20" y="151" width="280" height="309"/>
+                                <rect key="frame" x="20" y="189" width="280" height="271"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cr3-gP-Bje">
@@ -83,6 +83,16 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoA-4n-4vh">
+                                <rect key="frame" x="123" y="122" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Asset Type">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showAssetTypePicker:" destination="wCr-PB-qzm" eventType="touchUpInside" id="AX7-aP-0vM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -91,6 +101,7 @@
                             <constraint firstItem="Ztr-Wa-RwU" firstAttribute="leading" secondItem="JCc-JH-Pdb" secondAttribute="trailing" priority="999" constant="8" id="3cT-6m-OcG"/>
                             <constraint firstAttribute="trailing" secondItem="Yo9-oe-XmV" secondAttribute="trailing" constant="20" id="55l-jU-9E0"/>
                             <constraint firstAttribute="centerX" secondItem="g9D-Gs-tYN" secondAttribute="centerX" id="6VA-Ro-hci"/>
+                            <constraint firstItem="IoA-4n-4vh" firstAttribute="top" secondItem="tL2-6i-lGQ" secondAttribute="bottom" constant="8" id="Baz-U8-4zg"/>
                             <constraint firstItem="cr3-gP-Bje" firstAttribute="top" secondItem="5eC-j4-ec8" secondAttribute="bottom" id="Hf6-oe-N8m"/>
                             <constraint firstItem="EAE-8K-Qs6" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" constant="20" id="ITU-jx-7vb"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="width" secondItem="Ztr-Wa-RwU" secondAttribute="width" id="MRR-co-ldQ"/>
@@ -109,16 +120,18 @@
                             <constraint firstItem="Yo9-oe-XmV" firstAttribute="top" secondItem="0e1-j1-mrd" secondAttribute="bottom" constant="20" symbolic="YES" id="hck-T7-2Mg"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="leading" secondItem="In0-WH-or3" secondAttribute="trailing" priority="999" constant="8" id="heU-GT-vyH"/>
                             <constraint firstItem="5eC-j4-ec8" firstAttribute="top" secondItem="g9D-Gs-tYN" secondAttribute="bottom" constant="8" id="jei-3U-9Ce"/>
+                            <constraint firstAttribute="centerX" secondItem="IoA-4n-4vh" secondAttribute="centerX" id="lwr-Am-RCt"/>
                             <constraint firstItem="cr3-gP-Bje" firstAttribute="leading" secondItem="WGM-WK-q2H" secondAttribute="leading" id="mqL-t5-eMx"/>
                             <constraint firstItem="tL2-6i-lGQ" firstAttribute="top" secondItem="Ztr-Wa-RwU" secondAttribute="bottom" constant="8" id="nRj-lJ-fTE"/>
                             <constraint firstItem="CAr-8u-hIm" firstAttribute="top" secondItem="cr3-gP-Bje" secondAttribute="bottom" id="njg-Qd-iPS"/>
                             <constraint firstAttribute="trailing" secondItem="tL2-6i-lGQ" secondAttribute="trailing" constant="20" id="o7Y-fb-w3E"/>
-                            <constraint firstItem="g9D-Gs-tYN" firstAttribute="top" secondItem="tL2-6i-lGQ" secondAttribute="bottom" constant="8" id="w3b-5A-QE5"/>
+                            <constraint firstItem="g9D-Gs-tYN" firstAttribute="top" secondItem="IoA-4n-4vh" secondAttribute="bottom" constant="8" id="xgt-IG-zZV"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="rMf-3r-eRr"/>
                     <connections>
+                        <outlet property="assetTypeButton" destination="IoA-4n-4vh" id="Nbc-qb-8Oo"/>
                         <outlet property="creationDateLabel" destination="g9D-Gs-tYN" id="IZv-8R-Ial"/>
                         <outlet property="imageView" destination="5eC-j4-ec8" id="xPY-Gw-B2t"/>
                         <outlet property="nameField" destination="Yo9-oe-XmV" id="DeB-fA-tmm"/>

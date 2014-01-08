@@ -14,6 +14,7 @@
 		4A3A6B0D187CB00700C549A3 /* Homepwner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A6B0B187CB00700C549A3 /* Homepwner.xcdatamodeld */; };
 		4A3A6B15187CB2C900C549A3 /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A6B14187CB2C900C549A3 /* BNRItem.m */; };
 		4A3A6B17187CB90F00C549A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A3A6B16187CB90F00C549A3 /* CoreData.framework */; };
+		4A3A6B1D187CE00B00C549A3 /* BNRAssetTypePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A6B1C187CE00B00C549A3 /* BNRAssetTypePickerController.m */; };
 		4AD31CD71839DE8F0075E2AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CD61839DE8F0075E2AF /* Foundation.framework */; };
 		4AD31CD91839DE8F0075E2AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CD81839DE8F0075E2AF /* CoreGraphics.framework */; };
 		4AD31CDB1839DE8F0075E2AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31CDA1839DE8F0075E2AF /* UIKit.framework */; };
@@ -54,6 +55,8 @@
 		4A3A6B13187CB2C900C549A3 /* BNRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItem.h; sourceTree = "<group>"; };
 		4A3A6B14187CB2C900C549A3 /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
 		4A3A6B16187CB90F00C549A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4A3A6B1B187CE00B00C549A3 /* BNRAssetTypePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRAssetTypePickerController.h; sourceTree = "<group>"; };
+		4A3A6B1C187CE00B00C549A3 /* BNRAssetTypePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRAssetTypePickerController.m; sourceTree = "<group>"; };
 		4AD31CD31839DE8F0075E2AF /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD31CD61839DE8F0075E2AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AD31CD81839DE8F0075E2AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -161,17 +164,19 @@
 			children = (
 				4A1BDBA51864C41600E1F065 /* iPad */,
 				4A3A6B12187CB2AA00C549A3 /* Models */,
+				4AD31D0E183A8CBC0075E2AF /* Storyboard.storyboard */,
+				4AD31CE81839DE8F0075E2AF /* Images.xcassets */,
 				4AD31D051839DEA30075E2AF /* ItemsViewController.h */,
 				4AD31D061839DEA30075E2AF /* ItemsViewController.m */,
 				4AD31D51183AB1460075E2AF /* BNRItemDetailViewController.h */,
 				4AD31D52183AB1460075E2AF /* BNRItemDetailViewController.m */,
 				4A3A6AEF1872153800C549A3 /* HomepwnerItemCell.h */,
 				4A3A6AF01872153800C549A3 /* HomepwnerItemCell.m */,
-				4AD31D0E183A8CBC0075E2AF /* Storyboard.storyboard */,
 				4A3A6AF418728EDE00C549A3 /* ImageViewController.h */,
 				4A3A6AF518728EDE00C549A3 /* ImageViewController.m */,
 				4A3A6AF618728EDE00C549A3 /* ImageViewController.xib */,
-				4AD31CE81839DE8F0075E2AF /* Images.xcassets */,
+				4A3A6B1B187CE00B00C549A3 /* BNRAssetTypePickerController.h */,
+				4A3A6B1C187CE00B00C549A3 /* BNRAssetTypePickerController.m */,
 				4AD31CDD1839DE8F0075E2AF /* Supporting Files */,
 			);
 			path = Homepwner;
@@ -312,6 +317,7 @@
 				4A25B705185BDD3F00F543C7 /* BNRImageStore.m in Sources */,
 				4AD31D53183AB1460075E2AF /* BNRItemDetailViewController.m in Sources */,
 				4A3A6AF718728EDE00C549A3 /* ImageViewController.m in Sources */,
+				4A3A6B1D187CE00B00C549A3 /* BNRAssetTypePickerController.m in Sources */,
 				4AD31CE71839DE8F0075E2AF /* HomepwnerAppDelegate.m in Sources */,
 				4A3A6B15187CB2C900C549A3 /* BNRItem.m in Sources */,
 				4AD31CE31839DE8F0075E2AF /* main.m in Sources */,

@@ -88,7 +88,7 @@
                     format:@"Reason: %@", [error localizedDescription]];
     }
     
-    self.items = [[NSMutableArray alloc] initWithArray:fetchResults];
+    self.items = [fetchResults mutableCopy];
 }
 
 - (NSArray *)allItems
@@ -169,6 +169,41 @@
     NSURL *url = [docDirectories objectAtIndex:0];
 
     return [[url URLByAppendingPathComponent:@"store.data"] path];
+}
+
+- (NSArray *)allAssetTypes
+{
+    if (!self.assetTypes) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"BNRAssetType"];
+        
+        NSError *error;
+        NSArray *results = [self.context executeFetchRequest:request error:&error];
+        if (!results) {
+            [NSException raise:@"Fetch failed"
+                        format:@"Reason: %@", [error localizedDescription]];
+        }
+        self.assetTypes = [results mutableCopy];
+        
+        // Populate the asset types if none have been created yet
+        if (![self.assetTypes count]) {
+            NSManagedObject *assetType = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
+                                                                       inManagedObjectContext:self.context];
+            [assetType setValue:@"Furniture" forKey:@"label"];
+            [self.assetTypes addObject:assetType];
+            
+            assetType = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
+                                                      inManagedObjectContext:self.context];
+            [assetType setValue:@"Jewelry" forKey:@"label"];
+            [self.assetTypes addObject:assetType];
+
+            assetType = [NSEntityDescription insertNewObjectForEntityForName:@"BNRAssetType"
+                                                      inManagedObjectContext:self.context];
+            [assetType setValue:@"Electronics" forKey:@"label"];
+            [self.assetTypes addObject:assetType];
+        }
+    }
+    
+    return [self.assetTypes copy];
 }
 
 @end
