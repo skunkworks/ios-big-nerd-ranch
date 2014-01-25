@@ -14,7 +14,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic, weak) IBOutlet UILabel *serialLabel;
 @property (nonatomic, weak) IBOutlet UILabel *valueLabel;
-
-@property (nonatomic, weak) id controller;
+@property (weak, nonatomic) IBOutlet UIButton *thumbnailButton;
 
 @end

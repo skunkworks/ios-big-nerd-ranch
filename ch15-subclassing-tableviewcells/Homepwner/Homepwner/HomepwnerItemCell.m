@@ -10,13 +10,4 @@
 
 @implementation HomepwnerItemCell
 
-- (IBAction)showImage:(id)sender
-{
-    SEL selector = NSSelectorFromString(@"showImageForCell:");
-    if ([self.controller respondsToSelector:selector]) {
-        [self.controller performSelector:selector
-                              withObject:self];
-    }
-}
-
 @end

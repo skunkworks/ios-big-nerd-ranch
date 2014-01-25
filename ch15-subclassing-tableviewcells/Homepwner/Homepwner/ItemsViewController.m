@@ -34,8 +34,9 @@
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
     cell.thumbnailView.image = item.thumbnail;
 
-    // Used to receive messages from the cell
-    cell.controller = self;
+    [cell.thumbnailButton addTarget:self
+                             action:@selector(buttonPressed:withEvent:)
+                   forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
@@ -194,6 +195,14 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.popover = nil;
+}
+
+- (void)buttonPressed:(UIButton *)button withEvent:(UIEvent *)event
+{
+    CGPoint tapPoint = [[[event touchesForView:button] anyObject] locationInView:self.tableView];
+    NSIndexPath *ip = [self.tableView indexPathForRowAtPoint:tapPoint];
+    HomepwnerItemCell *cell = (HomepwnerItemCell *)[self.tableView cellForRowAtIndexPath:ip];
+    [self showImageForCell:cell];
 }
 
 @end
