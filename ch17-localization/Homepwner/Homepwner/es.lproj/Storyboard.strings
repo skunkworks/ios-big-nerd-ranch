@@ -1,0 +1,24 @@
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "3m2-iO-Td7"; */
+"3m2-iO-Td7.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Name"; ObjectID = "EAE-8K-Qs6"; */
+"EAE-8K-Qs6.text" = "Nombre";
+
+/* Class = "IBUILabel"; text = "Value"; ObjectID = "In0-WH-or3"; */
+"In0-WH-or3.text" = "Valor";
+
+/* Class = "IBUIButton"; normalTitle = "Asset Type"; ObjectID = "IoA-4n-4vh"; */
+"IoA-4n-4vh.normalTitle" = "Asset Type";
+
+/* Class = "IBUILabel"; text = "Serial"; ObjectID = "JCc-JH-Pdb"; */
+"JCc-JH-Pdb.text" = "Numero de serie";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "Ok5-ec-mw6"; */
+"Ok5-ec-mw6.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "YOW-VR-Wah"; */
+"YOW-VR-Wah.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Creation Date"; ObjectID = "g9D-Gs-tYN"; */
+"g9D-Gs-tYN.text" = "Creation Date";

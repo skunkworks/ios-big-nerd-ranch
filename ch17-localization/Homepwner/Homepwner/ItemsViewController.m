@@ -121,7 +121,7 @@ moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
     [super viewDidLoad];
     // Note: we don't have to create a navigation item ourselves. In fact, it's
     // a readonly property. Just read it and modify it.
-    self.navigationItem.title = @"Homepwner";
+    self.navigationItem.title = NSLocalizedString(@"Homepwner", @"Name of application");
 
     // We set up the navigation bar button item for Edit in code UIViewController
     // offers a free one that does everything we need. The Add New (+) item is
