@@ -10,10 +10,13 @@
 #import "BNRMapPoint.h"
 
 @interface WhereamiViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UISegmentedControl *mapTypeSegmentedControl;
 
 @end
 
 @implementation WhereamiViewController
+
+NSString * const WhereamiMapTypePreferenceKey = @"WhereamiMapTypePreferenceKey";
 
 # pragma mark - Setup and teardown
 
@@ -56,8 +59,9 @@
 {
     worldView.showsUserLocation = true;
     worldView.delegate = self;
-    // Ch. 5 Bronze Challenge
-    worldView.mapType = MKMapTypeSatellite;
+    
+    NSInteger selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:WhereamiMapTypePreferenceKey];
+    self.mapTypeSegmentedControl.selectedSegmentIndex = selectedSegmentIndex;
 }
 
 - (void)setupTextField
@@ -165,6 +169,7 @@
             worldView.mapType = MKMapTypeHybrid;
             break;
     }
+    [[NSUserDefaults standardUserDefaults] setInteger:sender.selectedSegmentIndex forKey:WhereamiMapTypePreferenceKey];
 }
 
 @end
