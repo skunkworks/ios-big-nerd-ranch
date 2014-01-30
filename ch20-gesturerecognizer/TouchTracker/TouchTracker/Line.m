@@ -15,6 +15,7 @@
     if (self = [super init]) {
         _begin = [aDecoder decodeCGPointForKey:@"Begin"];
         _end = [aDecoder decodeCGPointForKey:@"End"];
+        _width = [aDecoder decodeFloatForKey:@"Width"];
     }
     return self;
 }
@@ -23,6 +24,7 @@
 {
     [aCoder encodeCGPoint:self.begin forKey:@"Begin"];
     [aCoder encodeCGPoint:self.end forKey:@"End"];
+    [aCoder encodeFloat:self.width forKey:@"Width"];
 }
 
 @end

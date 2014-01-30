@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSMutableArray *completeLines;
 @property (weak, nonatomic) Line *selectedLine;
 @property (strong, nonatomic) UIPanGestureRecognizer *panGestureRecognizer;
+@property (nonatomic) CGPoint velocity;
 @end
 
 @implementation TouchDrawView
@@ -88,6 +89,9 @@
 
 - (void)moveLine:(UIPanGestureRecognizer *)gestureRecognizer
 {
+    // Record current velocity for use in drawing lines
+    self.velocity = [gestureRecognizer velocityInView:self];
+    
     if (!self.selectedLine) return;
     
     if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
@@ -103,6 +107,7 @@
         self.selectedLine.begin = begin;
         self.selectedLine.end = end;
         
+        // Need to reset the translation unless you reason want to keep track of the cumulative distance covered
         [gestureRecognizer setTranslation:CGPointZero inView:self];
         
         [self setNeedsDisplay];
@@ -121,6 +126,7 @@
         Line *line = [[Line alloc] init];
         line.begin = point;
         line.end = point;
+        line.width = 10.0;
         
         NSValue *key = [NSValue valueWithNonretainedObject:touch];
         self.linesInProgress[key] = line;
@@ -211,6 +217,29 @@
     self.selectedLine = line;
 }
 
+- (CGFloat)lineWidthForVelocity:(CGPoint)velocity
+{
+    // Fast = thin line, slow = thick line. Range is anywhere from 1.0-10.0.
+
+    // A quick swipe in one direction should be the same velocity as a quick swipe in a diagonal direction, so determine
+    // speed as the max velocity of both axes.
+    CGFloat maxVelocity = MAX(abs(velocity.x), abs(velocity.y));
+    CGFloat lineWidth = 10.0 - ((maxVelocity / 2000.0) * 9.0);
+    lineWidth = MAX(lineWidth, 1.0);
+    return lineWidth;
+}
+
+- (void)updateLineWidth:(Line *)line
+{
+    // We want to update the line width to reflect the velocity of the user touch input, but having it instantly update
+    // based on the last velocity measurement makes it feel unnatural because the line width modulates too drastically.
+    // I've chosen a simplistic workaround, which is to have the maximum velocity recorded during the line drawing
+    // determine the width of the line. It sucks, and the proper algo would be to smooth out this reading over multiple
+    // samples and take the avg delta, but for now it's ok.
+    CGFloat lineWidth = [self lineWidthForVelocity:self.velocity];
+    if (lineWidth < line.width) line.width = lineWidth;
+}
+
 #pragma mark - Public
 
 - (void)clear
@@ -239,10 +268,10 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(context, 10.0);
     CGContextSetLineCap(context, kCGLineCapRound);
     
     for (Line *line in self.completeLines) {
+        CGContextSetLineWidth(context, line.width);
         CGContextMoveToPoint(context, line.begin.x, line.begin.y);
         CGContextAddLineToPoint(context, line.end.x, line.end.y);
         if (line == self.selectedLine) {
@@ -255,9 +284,12 @@
     }
     
     [[UIColor redColor] set];
+    
     // NSValue is the object type of a key/value pair!
     for (NSValue *v in self.linesInProgress) {
         Line *line = [self.linesInProgress objectForKey:v];
+        [self updateLineWidth:line];
+        CGContextSetLineWidth(context, line.width);
         CGContextMoveToPoint(context, line.begin.x, line.begin.y);
         CGContextAddLineToPoint(context, line.end.x, line.end.y);
         CGContextStrokePath(context);
