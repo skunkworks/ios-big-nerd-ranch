@@ -25,6 +25,7 @@
         self.boxLayer = [[CALayer alloc] init];
         self.boxLayer.bounds = CGRectMake(0, 0, 85.0, 85.0);
         self.boxLayer.position = CGPointMake(160.0, 100.0);
+        self.boxLayer.cornerRadius = 5.0;
         self.boxLayer.backgroundColor = [[UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.5] CGColor];
         UIImage *hypnoImage = [UIImage imageNamed:@"hypno.png"];
         self.boxLayer.contents = (__bridge id)([hypnoImage CGImage]);
