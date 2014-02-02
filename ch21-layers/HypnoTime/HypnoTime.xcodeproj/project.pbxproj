@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A5AE80F189CAC4A00D01FB2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A5AE80E189CAC4A00D01FB2 /* QuartzCore.framework */; };
 		4AD31C40183991620075E2AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31C3F183991620075E2AF /* Foundation.framework */; };
 		4AD31C42183991620075E2AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31C41183991620075E2AF /* CoreGraphics.framework */; };
 		4AD31C44183991620075E2AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AD31C43183991620075E2AF /* UIKit.framework */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A5AE80E189CAC4A00D01FB2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4AD31C3C183991620075E2AF /* HypnoTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HypnoTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD31C3F183991620075E2AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AD31C41183991620075E2AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -79,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A5AE80F189CAC4A00D01FB2 /* QuartzCore.framework in Frameworks */,
 				4AD31C871839B4CE0075E2AF /* MapKit.framework in Frameworks */,
 				4AD31C42183991620075E2AF /* CoreGraphics.framework in Frameworks */,
 				4AD31C44183991620075E2AF /* UIKit.framework in Frameworks */,
@@ -121,6 +124,7 @@
 		4AD31C3E183991620075E2AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A5AE80E189CAC4A00D01FB2 /* QuartzCore.framework */,
 				4AD31C861839B4CE0075E2AF /* MapKit.framework */,
 				4AD31C3F183991620075E2AF /* Foundation.framework */,
 				4AD31C41183991620075E2AF /* CoreGraphics.framework */,
@@ -490,6 +494,7 @@
 				4AD31C6A183991620075E2AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AD31C6B183991620075E2AF /* Build configuration list for PBXNativeTarget "HypnoTimeTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +503,7 @@
 				4AD31C6D183991620075E2AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

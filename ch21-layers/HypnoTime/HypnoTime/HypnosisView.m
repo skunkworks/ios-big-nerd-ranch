@@ -7,6 +7,12 @@
 //
 
 #import "HypnosisView.h"
+#import <QuartzCore/QuartzCore.h>
+
+@interface HypnosisView ()
+@property (nonatomic) CALayer *boxLayer;
+@property (nonatomic) CALayer *subBoxLayer;
+@end
 
 @implementation HypnosisView
 
@@ -16,6 +22,20 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         self.circleColor = [UIColor lightGrayColor];
+        self.boxLayer = [[CALayer alloc] init];
+        self.boxLayer.bounds = CGRectMake(0, 0, 85.0, 85.0);
+        self.boxLayer.position = CGPointMake(160.0, 100.0);
+        self.boxLayer.backgroundColor = [[UIColor colorWithRed:1.0 green:0 blue:0 alpha:0.5] CGColor];
+        UIImage *hypnoImage = [UIImage imageNamed:@"hypno.png"];
+        self.boxLayer.contents = (__bridge id)([hypnoImage CGImage]);
+        self.boxLayer.contentsRect = CGRectMake(-0.1, -0.1, 1.2, 1.2);
+        [self.layer addSublayer:self.boxLayer];
+        self.subBoxLayer = [[CALayer alloc] init];
+        self.subBoxLayer.bounds = CGRectMake(0, 0, CGRectGetWidth(self.boxLayer.bounds) / 2.0, CGRectGetHeight(self.boxLayer.bounds) / 2.0);
+        self.subBoxLayer.position = CGPointMake(CGRectGetWidth(self.boxLayer.bounds) / 2.0, CGRectGetHeight(self.boxLayer.bounds) / 2.0);
+        UIImage *timeImage = [UIImage imageNamed:@"time.png"];
+        self.subBoxLayer.contents = (__bridge id)[timeImage CGImage];
+        [self.boxLayer addSublayer:self.subBoxLayer];
     }
     return self;
 }
@@ -83,6 +103,24 @@
         NSLog(@"I'm getting shook up!");
         self.circleColor = [UIColor redColor];
     }
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint tapPoint = [touch locationInView:self];
+    self.boxLayer.position = tapPoint;
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch = [touches anyObject];
+    CGPoint tapPoint = [touch locationInView:self];
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    self.boxLayer.position = tapPoint;
+    [CATransaction commit];
 }
 
 @end
